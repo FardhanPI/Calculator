@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="whole">
+        <input id="history" readonly type="text" >
+        <div class="inputbox"><input id="inputbox" readonly type="text" >
+        
+        </div>
+       
+        <div class="buttondivision">
+            <div><button class="allbutton" onclick="allbutton('%')">%</button>
+                <button class="allbutton" onclick="clears()">C</button>
+                <button class="allbutton" id="backbutton" onclick="backbutton()"><strong>←</strong> </button>
+             <button class="allbutton" onclick="allbutton('/')">÷</button></div>
+            <div><button class="allbutton number" onclick="allbutton('7')">7</button>
+            <button class="allbutton number" onclick="allbutton('8')">8</button>
+            <button class="allbutton number" onclick="allbutton('9')">9</button>
+            <button class="allbutton" onclick="allbutton('*')">×</button></div>
+            <div><button class="allbutton number" onclick="allbutton('4')">4</button>
+            <button class="allbutton number" onclick="allbutton('5')">5</button>
+            <button class="allbutton number" onclick="allbutton('6')">6</button>
+            <button class="allbutton" onclick="allbutton('-')">−</button></div>
+            <div><button class="allbutton number" onclick="allbutton('1')">1</button>
+            <button class="allbutton number" onclick="allbutton('2')">2</button>
+            <button class="allbutton number" onclick="allbutton('3')">3</button>
+            <button class="allbutton " onclick="allbutton('+')">+</button></div>
+            <div class="zerodiv"><button class="allbutton" onclick="posnegbutton()">- +</button>
+            <button class="allbutton number" onclick="allbutton('0')">0</button>
+            <button class="allbutton" onclick="allbutton('.')">.</button>
+            <button class="allbutton" onclick="equalclick('=')">=</button></div>
+            
+           
+        </div>
+
+       
+    </div>
+<style>
+    body{
+    margin: 0;
+   
+}
+.whole{
+    
+    text-align: center;
+  background-color: rgb(63, 63, 63);
+  height: 100vh;
+  width: 100vw;
+}
+
+
+
+
+.buttondivision{
+    display: inline-block;
+    margin-top: 4.5vh;
+    width: 100vw;
+    height: 67%;
+  
+}
+.allbutton{
+    
+   border: 1px solid rgb(63, 63, 63);
+   margin-left: -0.3vw;
+    padding: 3.5vh;
+    width: 24vw;
+    background-color: rgb(182, 182, 182);
+    font-size: 200%;
+    
+    
+}
+
+.number{
+    font-weight: bold;
+}
+.allbutton:hover{
+    background-color: rgb(162, 162, 162);
+    
+}
+.allbutton:active{
+  padding-top: 4vh;
+  padding-bottom: 3.45vh;
+  
+background-color: rgb(142, 142, 142);
+
+   font-size: 4.5vh;
+}
+#inputbox{
+   
+   display: inline-block;
+    line-height: 16vh;
+    width: 95vw; 
+    height: 10vh;
+   
+    text-align: right;
+    
+    background: rgb(102, 102, 102);
+    font-size: 250%;
+    border: 0;
+    padding-bottom: 6vh;
+   
+   
+}
+
+#history{
+     display: inline-block;
+   margin-top: 4vh;
+    top: 5vh;
+   
+     text-align: right;
+     width: 95vw;
+     height:5vh;
+     font-size:3.25vh ;
+    background-color: rgb(102, 102, 102);
+    border: 0;
+
+}
+
+#history:focus{
+    outline: none;
+    border: 0;
+}
+#inputbox:focus{
+    outline: none;
+    border: 0;
+}
+
+</style>
+
+    
+    <script >
+        var result=null,number=null,percentage=null;
+
+function allbutton(text) {
+ 
+
+   if(text!="%"){
+      document.getElementById("inputbox").value+=text;
+   }
+   if(text=='%'){
+      number=inputbox.value;
+      inputbox.value="";
+    
+      
+   }
+    
+  }
+  
+  function backbutton(){
+   
+   let text =document.getElementById("inputbox").value;
+   let modifiedText = text.substring(0, text.length - 1);
+   inputbox.value = modifiedText;
+  }
+  function clears(){
+   
+   document.getElementById("inputbox").value="";
+  }
+
+  function equalclick(){
+
+   
+  if(!inputbox.value.includes("*")&&!inputbox.value.includes("+")&&!inputbox.value.includes("-")&&!inputbox.value.includes("/")){
+   history.value=input.value;
+    percentage=inputbox.value;
+   result= (percentage*number)/100;
+   inputbox.value=result;
+   
+   result=null;
+   number=null;
+   percentage=null;
+   
+  }else{
+    document.getElementById("history").value=document.getElementById("inputbox").value+"=";
+      document.getElementById("inputbox").value=eval(document.getElementById("inputbox").value);
+
+  }
+
+ 
+
+  }
+   var flag=false;
+  function posnegbutton(){
+   if(flag==false){
+      flag=true;
+      inputbox.value="-"+inputbox.value;
+   }else if(flag==true){
+      flag=false;
+      inputbox.value = inputbox.value.replace("-", "");
+   
+  }
+}
+
+
+    </script>
+</body>
+</html>
